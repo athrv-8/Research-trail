@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Archive - Knowledge & Discovery</title>
+    <!-- Custom Font: Inter (Used for a modern, clean look) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 1. Global Variables & Base Styles --- */
+        :root {
+            --primary-blue: #00796b; /* Teal/Cyan */
+            --secondary-cyan: #80cbc4;
+            --accent-dark: #004d40;
+            --text-color: #374151; /* Gray-800 */
+            --light-bg: #f7f9fb;
+            --max-width: 80rem;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            margin-top: 0;
+        }
+
+        /* Utility for centering content */
+        .container {
+            max-width: var(--max-width);
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        /* --- 2. Header & Navigation --- */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 5rem;
+        }
+
+        .logo {
+            font-size: 1.875rem; /* 3xl */
+            font-weight: 700; /* bold */
+            color: var(--primary-blue);
+            letter-spacing: -0.025em; /* tracking-tight */
+            text-decoration: none;
+        }
+
+        .logo-dark {
+            color: var(--accent-dark);
+        }
+
+        /* Desktop Navigation */
+        .nav-desktop {
+            display: none;
+            gap: 2rem; /* space-x-8 */
+            font-weight: 500;
+        }
+
+        .nav-desktop a {
+            color: #4b5563; /* gray-600 */
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-desktop a:hover {
+            color: var(--primary-blue);
+        }
+
+        .cta-button {
+            padding: 0.5rem 1.5rem; /* px-6 py-2 */
+            background-color: var(--primary-blue);
+            color: white;
+            font-weight: 600;
+            border-radius: 9999px; /* rounded-full */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: var(--accent-dark);
+        }
+
+        /* Mobile Menu */
+        .menu-button {
+            display: block;
+            color: var(--primary-blue);
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .menu-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        .menu-mobile {
+            display: none;
+            background-color: white;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .menu-mobile a {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: #4b5563;
+            text-decoration: none;
+        }
+
+        .menu-mobile a:hover {
+            background-color: #f3f4f6; /* gray-100 */
+            color: var(--primary-blue);
+        }
+        
+        .menu-mobile .cta-button {
+            width: 95%;
+            margin: 0.5rem 1rem;
+        }
+        
+        /* Show desktop nav and hide mobile button on md breakpoint */
+        @media (min-width: 768px) {
+            .nav-desktop {
+                display: flex;
+            }
+            .menu-button, .menu-mobile {
+                display: none !important;
+            }
+            .nav-flex > div:last-child {
+                display: block;
+            }
+        }
+
+        /* --- 3. Hero Section --- */
+        .hero-section {
+            background-image: url('https://placehold.co/1920x800/e0f7fa/00796b?text=Global+Knowledge+Repository');
+            background-size: cover;
+            background-position: center;
+            background-color: var(--primary-blue);
+            background-blend-mode: multiply;
+            padding-top: 6rem;
+            padding-bottom: 8rem;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-subtitle {
+            color: var(--secondary-cyan);
+            font-size: 1.125rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .hero-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title-accent {
+            color: var(--secondary-cyan);
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            max-width: 48rem;
+            margin: 0 auto 2.5rem;
+            opacity: 0.9;
+        }
+
+        .hero-actions a {
+            padding: 0.75rem 2rem;
+            font-weight: 700;
+            border-radius: 9999px;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transition: transform 0.3s, background-color 0.3s;
+            margin: 0 0.5rem;
+        }
+
+        .hero-actions a:hover {
+            transform: scale(1.05);
+        }
+
+        .cta-main {
+            background-color: var(--secondary-cyan);
+            color: var(--accent-dark);
+        }
+
+        .cta-secondary {
+            background-color: white;
+            color: var(--primary-blue);
+        }
+        
+        @media (min-width: 768px) {
+            .hero-section {
+                padding-top: 10rem;
+                padding-bottom: 14rem;
+            }
+            .hero-title {
+                font-size: 3.75rem; /* 6xl */
+            }
+        }
+
+        /* --- 4. Cards Grid (Services & Team) --- */
+        
+        .card-grid-wrapper {
+            position: relative;
+            z-index: 10;
+            margin-top: -5rem;
+            margin-bottom: 5rem;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .card-grid-wrapper {
+                margin-top: -8rem;
+            }
+            .card-grid-3-col {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .card-grid-4-col {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        /* Shared Card Styles */
+        .base-card {
+            display: block; /* Important for links to fill the card */
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transition: transform 0.5s, box-shadow 0.5s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Hover Effect for all clickable cards */
+        .base-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 77, 64, 0.4); /* Accent-dark shadow */
+        }
+
+        .service-icon {
+            width: 4rem;
+            height: 4rem;
+            background-color: var(--primary-blue);
+            color: white;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.875rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.5s, box-shadow 0.5s;
+        }
+        
+        .service-card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--accent-dark);
+        }
+        
+        /* Team Member Cards */
+        .team-card {
+            text-align: center;
+        }
+        
+        .team-photo {
+            width: 8rem;
+            height: 8rem;
+            border-radius: 9999px;
+            margin: 0 auto 1rem;
+            object-fit: cover;
+            border: 4px solid rgba(0, 121, 107, 0.5); /* primary-blue/50 */
+        }
+        
+        .team-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1f2937; /* gray-900 */
+        }
+        
+        .team-role {
+            color: var(--primary-blue);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        
+        .team-bio {
+            font-size: 0.875rem;
+            color: #4b5563; /* gray-600 */
+        }
+
+        /* --- 5. Main Content Sections --- */
+        .section-padding {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
+        
+        .section-light-bg {
+            background-color: var(--secondary-cyan); /* light teal background for team */
+            background-color: rgba(128, 203, 196, 0.1); /* secondary-cyan/10 */
+        }
+        
+        .section-heading-wrapper {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-subtitle {
+            color: var(--primary-blue);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: #1f2937;
+        }
+        
+        /* Methodology/About Layout */
+        .content-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (min-width: 1024px) {
+            .content-layout {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .content-layout > div:first-child {
+                order: 2;
+            }
+            .content-layout > div:last-child {
+                order: 1;
+            }
+        }
+        
+        .feature-image {
+            border-radius: 0.75rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        
+        .content-layout h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: #1f2937;
+        }
+        
+        .content-layout p {
+            font-size: 1.125rem;
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+        }
+        
+        .content-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            color: #374151;
+        }
+
+        .content-list svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            color: var(--primary-blue);
+            margin-right: 0.5rem;
+        }
+        
+        .learn-more-link {
+            display: inline-block;
+            color: var(--primary-blue);
+            font-weight: 600;
+            margin-top: 2rem;
+            text-decoration: none;
+            transition: text-decoration 0.3s;
+        }
+
+        .learn-more-link:hover {
+            text-decoration: underline;
+        }
+
+        /* --- 6. Contact Section --- */
+        .contact-form-card {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-input-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-input-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.25rem;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db; /* gray-300 */
+            border-radius: 0.5rem;
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(0, 121, 107, 0.2);
+            outline: none;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info-item span {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+        
+        .contact-map-placeholder {
+            height: 16rem;
+            background-color: #e5e7eb; /* gray-200 */
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-map-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- 7. Footer --- */
+        .footer {
+            background-color: var(--accent-dark);
+            color: white;
+            padding-top: 2.5rem;
+            padding-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+
+        .footer-links a {
+            color: #d1d5db; /* gray-300 */
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-cyan);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .footer-copyright {
+            color: #9ca3af; /* gray-400 */
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-flex">
+                <!-- Logo -->
+                <a href="#" class="logo">
+                    <span class="logo-dark">Research</span> Archive
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="nav-desktop">
+                    <a href="#home">Home</a>
+                    <a href="#services">Services</a>
+                    <a href="#research">Methodology</a>
+                    <a href="#team">Curators</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden-on-mobile">
+                    <button class="cta-button">
+                        Request Access
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button (Hamburger) -->
+                <button id="mobile-menu-button" class="menu-button">
+                    <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="menu-mobile">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#research">Methodology</a>
+            <a href="#team">Curators</a>
+            <a href="#contact">Contact</a>
+            <div style="padding: 1rem 1rem 0;">
+                <button class="cta-button" style="width: 100%;">
+                    Request Access
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <span class="hero-subtitle">Centralizing Global Data</span>
+            <h1 class="hero-title">
+                Curating Knowledge and Accelerating <span class="hero-title-accent">Global Discovery</span>
+            </h1>
+            <p class="hero-description">
+                We are dedicated to preserving, organizing, and making complex scientific and historical archives accessible to researchers and educators worldwide.
+            </p>
+            <div class="hero-actions">
+                <a href="#" class="cta-main">
+                    Explore Data Sets
+                </a>
+                <a href="#" class="cta-secondary">
+                    Get Research Support
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section (Interactive Cards) -->
+    <div class="container card-grid-wrapper">
+        <section id="services" class="card-grid card-grid-3-col">
+
+            <!-- Service Card 1 -->
+            <a href="#" class="base-card">
+                <div class="service-icon">
+                    &#128193; <!-- Folder/Archive Icon -->
+                </div>
+                <h3 class="service-card-title">Digital Curation</h3>
+                <p style="color: #4b5563;">Securely digitizing, indexing, and classifying vast quantities of historical and scientific documents.</p>
+            </a>
+
+            <!-- Service Card 2 -->
+            <a href="#" class="base-card">
+                <div class="service-icon">
+                    &#128270; <!-- Key/Access Icon -->
+                </div>
+                <h3 class="service-card-title">Access and Retrieval</h3>
+                <p style="color: #4b5563;">Providing advanced search tools and APIs for fast, reliable access to targeted data sets.</p>
+            </a>
+
+            <!-- Service Card 3 -->
+            <a href="#" class="base-card">
+                <div class="service-icon">
+                    &#128218; <!-- Book/Learning Icon -->
+                </div>
+                <h3 class="service-card-title">Educational Resources</h3>
+                <p style="color: #4b5563;">Developing curated learning pathways and supporting academic research projects globally.</p>
+            </a>
+        </section>
+    </div>
+    
+    <!-- About/Methodology Section -->
+    <section id="research" class="section-padding">
+        <div class="container content-layout">
+            <!-- Image/Placeholder -->
+            <div style="order: 2;">
+                <img src="https://placehold.co/700x500/00796b/ffffff?text=Digital+Data+Visualization"
+                     alt="Digital data visualization interface"
+                     class="feature-image">
+            </div>
+
+            <!-- Content -->
+            <div style="order: 1;">
+                <span class="section-subtitle">Our Standards</span>
+                <h2>
+                    Uncompromising Data Integrity, <span style="color: var(--primary-blue);">Ethical</span> Sourcing
+                </h2>
+                <p>
+                    **Research Archive** operates under the strictest ethical and data integrity standards. Our team of expert archivists and data scientists ensures every entry is accurately sourced, verified, and preserved for future generations.
+                </p>
+                <ul class="content-list">
+                    <li>
+                        <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                        Metadata Tagging and Standardization
+                    </li>
+                    <li>
+                        <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                        Secure, Long-term Digital Preservation
+                    </li>
+                    <li>
+                        <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                        Open Access and Peer Review Integration
+                    </li>
+                </ul>
+                <a href="#team" class="learn-more-link">
+                    Meet Our Archival Curators &rarr;
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section (Interactive Cards) -->
+    <section id="team" class="section-padding section-light-bg">
+        <div class="container">
+            <div class="section-heading-wrapper">
+                <span class="section-subtitle">Our Experts</span>
+                <h2 class="section-title">
+                    The Dedicated Archival Curators
+                </h2>
+            </div>
+            <div class="card-grid card-grid-4-col">
+                
+                <!-- Team Member 1 -->
+                <a href="#" class="base-card team-card">
+                    <img src="https://placehold.co/150x150/00796b/ffffff?text=DR+A"
+                         alt="Dr. Alan Doe"
+                         class="team-photo">
+                    <h3 class="team-name">Dr. Alan Doe</h3>
+                    <p class="team-role">Chief Archivist</p>
+                    <p class="team-bio">Specializes in Historical Document Preservation.</p>
+                </a>
+
+                <!-- Team Member 2 -->
+                <a href="#" class="base-card team-card">
+                    <img src="https://placehold.co/150x150/00796b/ffffff?text=DR+B"
+                         alt="Dr. Sarah Johnson"
+                         class="team-photo">
+                    <h3 class="team-name">Dr. Sarah Johnson</h3>
+                    <p class="team-role">Head of Data Science</p>
+                    <p class="team-bio">Expert in Metadata and AI-driven Indexing.</p>
+                </a>
+
+                <!-- Team Member 3 -->
+                <a href="#" class="base-card team-card">
+                    <img src="https://placehold.co/150x150/00796b/ffffff?text=DR+C"
+                         alt="Dr. Michael Lee"
+                         class="team-photo">
+                    <h3 class="team-name">Dr. Michael Lee</h3>
+                    <p class="team-role">Lead Digital Curator</p>
+                    <p class="team-bio">Focuses on Open Science and Access Policies.</p>
+                </a>
+
+                <!-- Team Member 4 -->
+                <a href="#" class="base-card team-card">
+                    <img src="https://placehold.co/150x150/00796b/ffffff?text=DR+D"
+                         alt="Dr. Elena Petrova"
+                         class="team-photo">
+                    <h3 class="team-name">Dr. Elena Petrova</h3>
+                    <p class="team-role">Academic Partnerships Director</p>
+                    <p class="team-bio">Manages global university and research collaborations.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding">
+        <div class="container content-layout">
+
+            <!-- Contact Form -->
+            <div class="contact-form-card">
+                <h2 style="font-size: 1.875rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--primary-blue);">Get in Touch</h2>
+                <form action="#" method="POST" style="display: flex; flex-direction: column; gap: 1rem;">
+                    <div class="form-input-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required class="form-input">
+                    </div>
+                    <div class="form-input-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required class="form-input">
+                    </div>
+                    <div class="form-input-group">
+                        <label for="message">Your Inquiry (Specify access or partnership)</label>
+                        <textarea id="message" name="message" rows="4" required class="form-textarea"></textarea>
+                    </div>
+                    <button type="submit" class="cta-button" style="width: 100%; padding: 0.75rem 0; border-radius: 0.5rem; margin-top: 0.5rem;">
+                        Send Request
+                    </button>
+                </form>
+            </div>
+
+            <!-- Contact Info and Map Placeholder -->
+            <div>
+                <span class="section-subtitle">Our Location</span>
+                <h3 style="font-size: 1.875rem; font-weight: 700; margin-bottom: 1.5rem; color: #1f2937;">Global Archival Center</h3>
+
+                <div style="margin-bottom: 2rem;">
+                    <div class="contact-info-item">
+                        <span>&#128222;</span> <!-- Phone Icon -->
+                        <div>
+                            <p style="font-size: 0.875rem; color: #6b7280; margin: 0;">Support Line</p>
+                            <p style="font-weight: 500; color: #374151; margin: 0;">(123) 456-7890</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <span>&#9993;</span> <!-- Mail Icon -->
+                        <div>
+                            <p style="font-size: 0.875rem; color: #6b7280; margin: 0;">General Inquiries</p>
+                            <p style="font-weight: 500; color: #374151; margin: 0;">contact@researcharchive.org</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <span>&#127963;</span> <!-- Home Icon -->
+                        <div>
+                            <p style="font-size: 0.875rem; color: #6b7280; margin: 0;">Address</p>
+                            <p style="font-weight: 500; color: #374151; margin: 0;">100 Knowledge Blvd, Archival District, NY 10001</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map Placeholder -->
+                <div class="contact-map-placeholder">
+                    <img src="https://placehold.co/600x400/cccccc/333333?text=MAP+PLACEHOLDER"
+                         alt="Map location placeholder"
+                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/333333?text=Map+Unavailable'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p style="font-size: 1.125rem; font-weight: 700;">Research Archive</p>
+            <div class="footer-links">
+                <a href="#">Data Policy</a>
+                <a href="#">Acceptable Use</a>
+                <a href="#">Sitemap</a>
+            </div>
+            <p class="footer-copyright">&copy; 2024 Research Archive. All rights reserved. Accelerating knowledge globally.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu Toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = mobileMenu.querySelectorAll('a');
+            const ctaButton = mobileMenu.querySelector('button');
+
+            // Function to toggle mobile menu visibility
+            mobileMenuButton.addEventListener('click', () => {
+                // Toggle display style
+                if (mobileMenu.style.display === 'block') {
+                    mobileMenu.style.display = 'none';
+                } else {
+                    mobileMenu.style.display = 'block';
+                }
+            });
+
+            // Function to close menu when a link is clicked or CTA is used
+            const closeMenu = () => {
+                 mobileMenu.style.display = 'none';
+            };
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+            ctaButton.addEventListener('click', closeMenu);
+        });
+    </script>
+
+</body>
+</html>
