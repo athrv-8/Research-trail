@@ -1,333 +1,53 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>My Research — Research Archive</title>
-  <meta name="description" content="My Research — curated projects, publications and resources across Physics, Chemistry, Neuroscience, AI and more. Research Archive." />
-  <meta name="keywords" content="research, publications, physics, chemistry, neuroscience, quantum, AI, biotechnology, mathematics" />
-  <link rel="icon" href="data:,">
-  <style>
-    /* --- Simple CSS (no frameworks) --- */
-    :root{
-      --bg: #F6F7FB;
-      --card: #fff;
-      --primary: #2B2F6B;
-      --accent: #17A2A6;
-      --muted: #58607A;
-      --radius: 12px;
-      --maxw: 1200px;
-      --gap: 18px;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      color-scheme: light;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--primary);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.45;
-      padding:32px 18px;
-      display:flex;
-      justify-content:center;
-    }
-    .container{max-width:var(--maxw);width:100%;}
-    header.site-hero{
-      display:flex;
-      gap:20px;
-      align-items:center;
-      justify-content:space-between;
-      margin-bottom:28px;
-    }
-    .brand{
-      display:flex;
-      gap:14px;
-      align-items:center;
-    }
-    .logo {
-      width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--accent));
-      display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:20px;
-    }
-    .site-title h1{margin:0;font-size:18px;}
-    .site-title p{margin:0;font-size:13px;color:var(--muted);}
-    /* Hero card */
-    .hero-card{
-      background:linear-gradient(180deg,#ffffffcc, #ffffff99);
-      padding:22px;
-      border-radius:16px;
-      box-shadow:0 6px 20px rgba(43,47,107,0.08);
-      display:flex;flex-direction:column;
-      gap:14px;
-      margin-bottom:20px;
-    }
-    .hero-top{display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-    .hero-left h2{margin:0;font-size:26px}
-    .hero-left p{margin:0;color:var(--muted)}
-    .cta{
-      display:inline-flex;
-      gap:10px;
-      align-items:center;
-    }
-    .btn{
-      background:var(--primary);color:#fff;padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:600;
-    }
-    .btn.secondary{background:transparent;color:var(--primary);border:1px solid rgba(43,47,107,0.08)}
-    /* Search */
-    .controls{display:flex;gap:12px;margin:12px 0;align-items:center;flex-wrap:wrap}
-    .search{
-      flex:1;min-width:220px;
-      display:flex;gap:8px;align-items:center;
-      background:#fff;padding:8px;border-radius:10px;box-shadow:0 4px 12px rgba(16,24,40,0.04);
-    }
-    .search input{border:0;outline:none;padding:8px;width:100%;font-size:14px}
-    .select{background:#fff;padding:9px;border-radius:10px;border:0;min-width:160px}
-    /* Grid */
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:var(--gap);
-      margin-top:10px;
-    }
-    .card{
-      background:var(--card);
-      padding:16px;border-radius:12px;box-shadow:0 6px 18px rgba(36,38,68,0.04);
-      display:flex;flex-direction:column;gap:10px;
-      min-height:120px;
-    }
-    .card .icon{
-      width:44px;height:44px;border-radius:10px;background:#eef7f6;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent)
-    }
-    .card h3{margin:0;font-size:16px}
-    .card p{margin:0;color:var(--muted);font-size:13px}
-    .card a{margin-top:auto;color:var(--primary);text-decoration:none;font-weight:600;font-size:13px}
-    /* Featured */
-    .featured{
-      margin-top:26px;padding:16px;border-radius:12px;background:linear-gradient(90deg,#ffffff,#f7fbff);box-shadow:0 6px 24px rgba(17,24,39,0.03)
-    }
-    /* Footer */
-    footer{margin-top:26px;padding:18px;border-radius:12px;background:#fff;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
-    /* Responsive */
-    @media (max-width:980px){
-      .grid{grid-template-columns:repeat(2,1fr)}
-      .hero-left h2{font-size:22px}
-    }
-    @media (max-width:640px){
-      body{padding:18px}
-      .grid{grid-template-columns:1fr}
-      header.site-hero{flex-direction:column;align-items:flex-start;gap:12px}
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research Archive</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container" role="main">
-    <header class="site-hero" aria-label="Research Archive header">
-      <div class="brand">
-        <div class="logo" aria-hidden="true">RA</div>
-        <div class="site-title">
-          <h1>Research Archive</h1>
-          <p>My Research — curated projects & publications</p>
-        </div>
-      </div>
-      <div class="cta" aria-hidden="false">
-        <button class="btn" onclick="alert('New project modal (placeholder)')">+ New Project</button>
-        <button class="btn secondary" onclick="alert('Sign in (placeholder)')">Sign in</button>
-      </div>
-    </header>
+  <!-- Navigation -->
+  <header>
+    <div class="logo">Research Archive</div>
+    <nav id="nav-menu">
+      <a href="#">Home</a>
+      <a href="#">Research</a>
+      <a href="#">Publications</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <button class="login-btn">Login</button>
+      <button class="logout-btn" style="display:none;">Logout</button>
+    </nav>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+  </header>
 
-    <section class="hero-card" aria-labelledby="hero-title">
-      <div class="hero-top">
-        <div class="hero-left">
-          <h2 id="hero-title">My Research — Explore & share your work</h2>
-          <p>Curated collections, publications, experiment logs, datasets and project summaries across multiple disciplines.</p>
-        </div>
-        <div>
-          <small style="color:var(--muted)">Showing public projects • Updated recently</small>
-        </div>
-      </div>
+  <!-- Hero Section -->
+  <section class="hero">
+    <canvas id="hero-animation"></canvas>
+    <div class="hero-content">
+      <h1>Explore the Future of Science</h1>
+      <p>Connecting Researchers, Innovators, and Thinkers Worldwide</p>
+      <a href="#" class="cta-btn">Get Started</a>
+    </div>
+  </section>
 
-      <div class="controls" role="region" aria-label="Search and filters">
-        <div class="search" aria-hidden="false">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="opacity:.6"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></circle></svg>
-          <input id="q" type="search" placeholder="Search by keyword, author or title" aria-label="Search projects">
-        </div>
-        <select id="field" class="select" aria-label="Filter by field">
-          <option value="">All fields</option>
-          <option>Physics</option><option>Chemistry</option><option>Neuroscience</option><option>Biotechnology</option><option>Quantum Physics</option><option>Mathematics</option><option>Computer Science</option><option>Materials Science</option><option>Environmental Science</option><option>Astronomy</option><option>Economics</option><option>Cognitive Science</option><option>Robotics</option><option>Artificial Intelligence</option><option>Bioinformatics</option>
-        </select>
-        <button class="btn" onclick="filterCards()">Filter</button>
-      </div>
-
-      <!-- Grid of feature cards -->
-      <div id="cards" class="grid" aria-live="polite">
-        <!-- Cards (15) -->
-        <article class="card" data-field="Physics">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" aria-hidden="true">Φ</div>
-            <div>
-              <h3>Physics</h3>
-              <p>Experimental & theoretical physics projects, lab notes and publications.</p>
-            </div>
-          </div>
-          <a href="#physics">Explore →</a>
-        </article>
-
-        <article class="card" data-field="Chemistry">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" aria-hidden="true">⚗</div>
-            <div><h3>Chemistry</h3><p>Synthesis, spectroscopy and computational chemistry resources.</p></div>
-          </div>
-          <a href="#chemistry">Explore →</a>
-        </article>
-
-        <article class="card" data-field="Neuroscience">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" aria-hidden="true">ψ</div>
-            <div><h3>Neuroscience</h3><p>Neural recordings, imaging and cognitive experiment datasets.</p></div>
-          </div>
-          <a href="#neuro">Explore →</a>
-        </article>
-
-        <article class="card" data-field="Biotechnology">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" aria-hidden="true">🧬</div>
-            <div><h3>Biotechnology</h3><p>Protocols, constructs and translational research summaries.</p></div>
-          </div>
-          <a href="#bio">Explore →</a>
-        </article>
-
-        <article class="card" data-field="Quantum Physics">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" aria-hidden="true">Q</div>
-            <div><h3>Quantum Physics</h3><p>Quantum experiments, algorithms and simulation notebooks.</p></div>
-          </div>
-          <a href="#quantum">Explore →</a>
-        </article>
-
-        <article class="card" data-field="Mathematics">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" aria-hidden="true">∑</div>
-            <div><h3>Mathematics</h3><p>Theorems, proofs and computational experiments.</p></div>
-          </div>
-          <a href="#math">Explore →</a>
-        </article>
-
-        <article class="card" data-field="Computer Science">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" aria-hidden="true">⌘</div>
-            <div><h3>Computer Science</h3><p>Algorithms, systems and reproducible code bundles.</p></div>
-          </div>
-          <a href="#cs">Explore →</a>
-        </article>
-
-        <article class="card" data-field="Materials Science">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" aria-hidden="true">🔬</div>
-            <div><h3>Materials Science</h3><p>Characterization, microstructure and new-material reports.</p></div>
-          </div>
-          <a href="#materials">Explore →</a>
-        </article>
-
-        <article class="card" data-field="Environmental Science">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" aria-hidden="true">🌿</div>
-            <div><h3>Environmental Science</h3><p>Climate data, field studies and impact assessments.</p></div>
-          </div>
-          <a href="#env">Explore →</a>
-        </article>
-
-        <article class="card" data-field="Astronomy">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" aria-hidden="true">✶</div>
-            <div><h3>Astronomy</h3><p>Observational data, catalogues and analysis notebooks.</p></div>
-          </div>
-          <a href="#astro">Explore →</a>
-        </article>
-
-        <article class="card" data-field="Economics">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" aria-hidden="true">₪</div>
-            <div><h3>Economics</h3><p>Models, data and policy analysis.</p></div>
-          </div>
-          <a href="#econ">Explore →</a>
-        </article>
-
-        <article class="card" data-field="Cognitive Science">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" aria-hidden="true">🧠</div>
-            <div><h3>Cognitive Science</h3><p>Behavioral tasks, scoring scripts and analyses.</p></div>
-          </div>
-          <a href="#cog">Explore →</a>
-        </article>
-
-        <article class="card" data-field="Robotics">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" aria-hidden="true">🤖</div>
-            <div><h3>Robotics</h3><p>Control, path planning and hardware descriptions.</p></div>
-          </div>
-          <a href="#robot">Explore →</a>
-        </article>
-
-        <article class="card" data-field="Artificial Intelligence">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" aria-hidden="true">AI</div>
-            <div><h3>Artificial Intelligence</h3><p>Models, datasets and reproducible experiments.</p></div>
-          </div>
-          <a href="#ai">Explore →</a>
-        </article>
-
-        <article class="card" data-field="Bioinformatics">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" aria-hidden="true">🧾</div>
-            <div><h3>Bioinformatics</h3><p>Genomics pipelines, data and notebooks.</p></div>
-          </div>
-          <a href="#bioinfo">Explore →</a>
-        </article>
-      </div>
-
-      <div class="featured" aria-label="Featured paper">
-        <strong>Featured:</strong>
-        <div style="margin-top:8px">
-          <a href="#" style="font-weight:700;color:var(--primary);text-decoration:none">A cross-disciplinary dataset linking imaging and genomics</a>
-          <p style="margin:6px 0 0;color:var(--muted)">Short summary line — reproducible code and DOI included.</p>
-        </div>
-      </div>
-    </section>
-
-    <footer role="contentinfo">
-      <div>
-        <strong>Research Archive</strong> • Curated collections & reproducible research.
-      </div>
-      <div style="display:flex;gap:12px;align-items:center">
-        <small style="color:var(--muted)">© <span id="year"></span></small>
-        <a href="#subscribe" style="text-decoration:none;color:var(--accent);font-weight:600">Subscribe</a>
-      </div>
-    </footer>
-  </div>
-
-  <script>
-    // small scripts for interactivity
-    document.getElementById('year').innerText = new Date().getFullYear();
-
-    function filterCards(){
-      const q = (document.getElementById('q').value || '').toLowerCase().trim();
-      const field = (document.getElementById('field').value || '').trim();
-      const cards = document.querySelectorAll('#cards .card');
-      cards.forEach(card => {
-        const title = card.querySelector('h3').innerText.toLowerCase();
-        const desc = card.querySelector('p').innerText.toLowerCase();
-        const f = card.dataset.field || '';
-        const matchQ = q === '' || title.includes(q) || desc.includes(q);
-        const matchField = field === '' || f.toLowerCase() === field.toLowerCase();
-        card.style.display = (matchQ && matchField) ? '' : 'none';
-      });
-    }
-
-    // support Enter key search
-    document.getElementById('q').addEventListener('keydown', (e) => {
-      if(e.key === 'Enter') filterCards();
-    });
-  </script>
+  <!-- Footer -->
+  <footer>
+    <div class="footer-left">
+      © 2025 Research Archive. All Rights Reserved.
+    </div>
+    <div class="footer-right">
+      <a href="#">Terms</a>
+      <a href="#">License</a>
+      <a href="#">Privacy</a>
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn"></a>
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub"></a>
+    </div>
+  </footer>
 </body>
 </html>
